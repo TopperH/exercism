@@ -1,6 +1,6 @@
 module Isogram
   def self.isogram?(input)
     letters_array = input.downcase.scan(/\w/)
-    letters_array.sort == letters_array.uniq.sort
+    letters_array == letters_array.uniq
   end
 end
