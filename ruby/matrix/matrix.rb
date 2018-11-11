@@ -1,20 +1,13 @@
 class Matrix
-  def initialize(matrix)
-    @matrix = matrix
+  def initialize(matrix_as_string)
+    @matrix_as_string = matrix_as_string
   end
 
   def rows
-    find_rows
+    @matrix_as_string.lines.map { |x| x.split.map(&:to_i) }
   end
 
   def columns
-    arr_of_rows = find_rows
-    Array.new(arr_of_rows[0].size) { |c| Array.new(arr_of_rows.size) { |r| arr_of_rows[r][c] } }
-  end
-
-  private
-
-  def find_rows
-    @matrix.split("\n").map { |x| x.split(" ").map(&:to_i) }
+    self.rows.transpose
   end
 end
