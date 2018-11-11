@@ -9,6 +9,7 @@ class Matrix
   end
 
   private
+
   def extract_rows(matrix_as_string)
     matrix_as_string.lines.map { |x| x.split.map(&:to_i) }
   end
