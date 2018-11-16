@@ -1,10 +1,9 @@
 class Matrix
-  attr_accessor :rows
-  attr_accessor :columns
+  attr_reader :rows
+  attr_reader :columns
 
   def initialize(matrix_as_string)
-    @matrix_as_string = matrix_as_string
-    @rows = extract_rows(@matrix_as_string)
+    @rows = extract_rows(matrix_as_string)
     @columns = @rows.transpose
   end
 
@@ -13,5 +12,4 @@ class Matrix
   def extract_rows(matrix_as_string)
     matrix_as_string.lines.map { |x| x.split.map(&:to_i) }
   end
-
 end
