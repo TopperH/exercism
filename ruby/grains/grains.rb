@@ -1,13 +1,12 @@
 module Grains
+  BOARD_SQUARES = (1..64).freeze
   def self.square(integer)
-    raise ArgumentError unless integer.between?(1, 64)
-    return 1 if integer == 1
+    raise ArgumentError unless BOARD_SQUARES.include?(integer)
 
-    x = 1
-    (1..(integer - 1)).map { x *= 2 }.last
+    integer**(integer - 1)
   end
 
   def self.total
-    (1..64).map { |i| square(i) }.sum
+    BOARD_SQUARES.map { |i| square(i) }.sum
   end
 end
