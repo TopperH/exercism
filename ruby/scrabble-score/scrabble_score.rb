@@ -7,19 +7,18 @@ class Scrabble
     %w[K]                   =>  5,
     %w[J X]                 =>  8,
     %w[Q Z]                 => 10
-  }.freeze
+  }.flat_map { |group, score| group.map { |letter| [letter, score] } }
+                  .to_h.freeze
+
+  def self.score(word)
+    new(word).score
+  end
 
   def initialize(word)
     @letters = word.to_s.upcase.scan(/\w/)
   end
 
   def score
-    @letters.map { |letter| score_for_letter(letter) }.sum
-  end
-
-  private
-
-  def score_for_letter(letter)
-    LETTER_SCORES.find { |k, _v| k.include?(letter) }.last
+    @letters.sum { |letter| LETTER_SCORES[letter] }
   end
 end
