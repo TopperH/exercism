@@ -8,26 +8,22 @@ class HighScores
   end
 
   def latest
-    @scores_list.last
+    scores.last
   end
 
   def personal_best
-    @scores_list.max
+    scores.max
   end
 
   def personal_top
-    @scores_list.sort { |x, y| y <=> x }[0..2]
+    scores.max(3)
   end
 
   def report
-    "#{common_report} #{custom_report}"
+    "Your latest score was #{latest}. " + custom_report
   end
 
   private
-
-  def common_report
-    "Your latest score was #{latest}."
-  end
 
   def custom_report
     if latest == personal_best
