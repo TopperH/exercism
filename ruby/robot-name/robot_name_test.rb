@@ -53,7 +53,6 @@ class RobotTest < Minitest::Test
 
   # This test assumes you're using Kernel.rand as a source of randomness
   def test_different_name_when_chosen_name_is_taken
-    skip
     same_seed = 1234
     Kernel.srand same_seed
     robot_1 = Robot.new
@@ -65,7 +64,6 @@ class RobotTest < Minitest::Test
   end
 
   def test_generate_all_robots
-    skip
     all_names_count = 26 * 26 * 1000
     time_limit = Time.now + 60 # seconds
     seen_names = Hash.new(0)

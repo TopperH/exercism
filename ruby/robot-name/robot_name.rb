@@ -1,26 +1,17 @@
 class Robot
-  attr_accessor :name
+  attr_reader :name
+  @@possible_names = ("AA000".."ZZ999").to_a.shuffle
 
   def self.forget
+    @@possible_names = ("AA000".."ZZ999").to_a.shuffle
   end
 
   def initialize
-    @taken_names ||= []
-    @name = generate_name
+    @name = @@possible_names.shift
   end
 
   def reset
-    @name = generate_name
+    initialize
   end
 
-  def generate_name
-    name = ''
-    loop do
-      name = ("AA000".."ZZ999").to_a.sample
-      duplicated = @taken_names.include?(name)
-      @taken_names << name
-      break unless duplicated
-    end
-    name
-  end
 end
