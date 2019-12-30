@@ -9,6 +9,6 @@ class Phrase
   public
 
   def word_count
-    sentence.downcase.split(/'?[^\w']+'?/).reject(&:empty?).tally
+    sentence.downcase.scan(/\b[\w']+\b/).tally
   end
 end
