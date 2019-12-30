@@ -1,11 +1,17 @@
 class Series
+  private
+
+  attr_reader :digits
+
   def initialize(digits)
     @digits = digits
   end
 
-  def slices(slice_size)
-    raise ArgumentError if slice_size > @digits.size
+  public
 
-    @digits.each_char.each_cons(slice_size).map(&:join)
+  def slices(slice_size)
+    raise ArgumentError unless slice_size <= digits.size
+
+    digits.each_char.each_cons(slice_size).map(&:join)
   end
 end
